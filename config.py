@@ -1,15 +1,16 @@
-# config.py
-
 from pathlib import Path
+from dotenv import load_dotenv
+import os
 
-# Project root
 BASE_DIR = Path(__file__).resolve().parent
 
-# Prompt folder
 PROMPTS_DIR = BASE_DIR / "prompts"
-
-# Log folder
 LOGS_DIR = BASE_DIR / "logs"
 
-# Confidence threshold for escalation
+load_dotenv()
+
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+
+MODEL_NAME = "gemini-2.5-flash"
+
 CONFIDENCE_THRESHOLD = 0.70
