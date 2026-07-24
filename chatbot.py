@@ -5,10 +5,10 @@ from utils import load_prompt
 from config import PROMPTS_DIR
 from gemini_service import generate_response
 from memory import ConversationMemory
+from logger import log_conversation
 
 
 class SmartSupportChatbot:
-
     def __init__(self):
         self.memory = ConversationMemory()
 
@@ -32,7 +32,17 @@ class SmartSupportChatbot:
 
         response = generate_response(final_prompt)
 
+        log_conversation(
+    intent,
+    query,
+    response
+)
+
         self.memory.add("user", query)
         self.memory.add("assistant", response)
 
-        return response
+        return {
+            "intent": intent,
+            "response": response,
+            "history": self.memory.get_history()
+        }
