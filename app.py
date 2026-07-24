@@ -44,6 +44,11 @@ with st.sidebar:
         "My application is crashing"
     ]
 
+    st.metric(
+    "Intents Supported",
+    5
+    )
+
     selected_question = None
 
     for question in quick_questions:
@@ -62,7 +67,25 @@ with st.sidebar:
 # ----------------------------
 
 st.title("💬 SmartSupport AI")
-st.caption("AI-Powered Customer Support Assistant")
+
+st.markdown(
+"""
+### AI-Powered Customer Support Assistant
+
+Prompt Engineering • Gemini AI • Intent Classification • Escalation • Evaluation
+"""
+)
+col1, col2, col3 = st.columns(3)
+
+with col1:
+    st.metric("AI Model", "Gemini")
+
+with col2:
+    st.metric("Supported Intents", "5")
+
+with col3:
+    st.metric("Status", "🟢 Online")
+
 
 # Display previous messages
 
@@ -118,11 +141,12 @@ if user_input:
         score = evaluate_response(result)
         st.progress(score / 100)
         st.caption(f"Response Quality Score: {score}/100")
+        st.info(f"Detected Intent: **{result['intent'].title()}**")
 
-    if result.get("escalate"):
-        st.warning(
-            "⚠️ This conversation should be escalated to a human support representative."
-        )
+    if result["escalate"]:
+        st.error("⚠ Human escalation recommended.")
+    else:
+        st.success("✅ No escalation required.")
 
     st.session_state.messages.append(
         {

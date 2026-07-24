@@ -6,6 +6,8 @@ from config import PROMPTS_DIR
 from gemini_service import generate_response
 from memory import ConversationMemory
 from logger import log_conversation
+from escalation import should_escalate
+
 
 
 class SmartSupportChatbot:
@@ -41,8 +43,11 @@ class SmartSupportChatbot:
         self.memory.add("user", query)
         self.memory.add("assistant", response)
 
+        escalation = should_escalate(query)
+
         return {
-            "intent": intent,
-            "response": response,
-            "history": self.memory.get_history()
-        }
+    "intent": intent,
+    "response": response,
+    "history": self.memory.get_history(),
+    "escalate": escalation
+}
