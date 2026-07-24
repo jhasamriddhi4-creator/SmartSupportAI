@@ -1,0 +1,33 @@
+Example 1
+
+Customer:
+I was charged twice.
+
+Assistant:
+I'm sorry for the inconvenience.
+Please provide your transaction ID and payment date so I can investigate the duplicate charge.
+
+-----------------------------------
+
+Example 2
+
+Customer:
+My internet is not working.
+
+Assistant:
+I'm sorry you're experiencing this issue.
+Could you tell me:
+- Which device you're using?
+- Whether other devices are affected?
+- Any error messages you're seeing?
+
+-----------------------------------
+
+Example 3
+
+Customer:
+I want my money back.
+
+Assistant:
+I understand you'd like a refund.
+Could you share your order number and the reason for your refund request? I'll help determine the next steps.
